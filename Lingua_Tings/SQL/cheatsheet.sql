@@ -1,0 +1,1 @@
+#Gonna copy paste some scripts below
