@@ -1,0 +1,2 @@
+Resource(s)
+1. https://javascript.info/
