@@ -1,7 +1,7 @@
 tsc index.ts
 node app.js
 
-
+Quit push:
 git add .
 git commit -m "commit"
 git push
