@@ -1,0 +1,7 @@
+tsc index.ts
+node app.js
+
+
+git add .
+git commit -m "commit"
+git push
