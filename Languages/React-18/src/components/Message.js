@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 export const Message = () => {
-    
+    //https://www.youtube.com/watch?v=jLS0TkAHvRg
     const [message,setMessage] = useState('Welcome Visitor')
     //const newMessage= 'Thank you for subscribing!'
     return (
