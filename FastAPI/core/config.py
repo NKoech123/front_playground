@@ -8,7 +8,6 @@ from sqlalchemy.ext.declarative import declarative_base
 config_dict = dotenv_values(".env") 
 
 
-
 #Postgres 
 DATABASE_URI = f"postgresql+psycopg2://{config_dict['user']}:{config_dict['password']}@{config_dict['host']}:{config_dict['port']}/{config_dict['dbname']}"
 

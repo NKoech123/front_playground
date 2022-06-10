@@ -13,7 +13,7 @@ class Role(str,Enum):
     owner = "owner"
 
 
-class User(BaseModel):
+class UserSchema(BaseModel):
 
     id: Optional[UUID] = uuid4()
     first_name: str
