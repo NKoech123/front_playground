@@ -25,7 +25,7 @@ class Doctor(BaseModel):
     id: Optional[UUID] = uuid4()
     first_name : str
     last_name : str
-    appointments : Optional[List]   #Optional[List]    # Optional[List[PatientAppointment]]
+    appointments : Optional[List[PatientAppointment]]
 
 
 
