@@ -1,31 +1,31 @@
+from uuid import UUID,uuid4
+from typing import Optional, List
 from pydantic import BaseModel
-from uuid import UUID, uuid4
-from typing import List, Optional
 from enum import Enum
 
-
-class Gender(str,Enum):
-    male = "male"
-    female = "female"
-
-class Role(str,Enum):
-    customer = "customer"
-    owner = "owner"
+from datetime import datetime, date
 
 
-class User(BaseModel):
 
+class KIND (str, Enum):
+    follow_up = "follow_up"
+    new_patient = "new_patient"
+
+
+class PatientAppointment(BaseModel):
     id: Optional[UUID] = uuid4()
-    first_name: str
-    last_name: str
-    middle_name: Optional[str]
-    gender: Gender
-    roles: List[Role]
+    first_name : str
+    last_name : str
+    time : str
+    kind : KIND   #follow-up/ new_patient
+ 
 
 
-class UserUpdateRequest(BaseModel):
-    first_name: Optional[str]
-    last_name: Optional[str]
-    middle_name: Optional[str]
-    roles: Optional[List[Role]]
+class Doctor(BaseModel):
+    id: Optional[UUID] = uuid4()
+    first_name : str
+    last_name : str
+    appointments : Optional[List]   #Optional[List]    # Optional[List[PatientAppointment]]
+
+
 

@@ -1,70 +1,70 @@
-from http.client import HTTPException
-from fastapi import FastAPI, HTTPException
-from typing import List
-from models import User,Gender,Role, UserUpdateRequest
-from uuid import uuid4,UUID
+from fastapi import FastAPI
+from models import Doctor, uuid4, PatientAppointment,KIND
+from typing import Optional, List
+import json
+from datetime import datetime
 
 app = FastAPI()
 
-db: List[User] = [
-    User(id=UUID("33e17344-a30c-45b7-a99f-f85eb13532a9"),
-    first_name = "Nicholas",
-    last_name = "Koech",
-    gender = Gender.male,
-    roles = [Role.owner]
-    ),
+db: List[Doctor] = [
 
-    User(id = UUID("78cb97f8-fc1d-473e-896b-d0560e69d6ae"),
-    first_name = "Lizzie",
-    last_name = "Njeri",
-    gender = Gender.female,
-    roles = [Role.customer,Role.owner]
-    ),
-         
+    Doctor(
+        id = uuid4(),
+        first_name ="Will",
+        last_name = "Smith",
+        appointment = [ PatientAppointment(
+                first_name = "Chris",
+                last_name = "Rock",
+                time = datetime.now(),
+                kind = KIND.follow_up
+                ) ,]
+        ),   
+
+        Doctor(
+        id = uuid4(),
+        first_name ="Ben",
+        last_name = "Carson",
+        appointment = [ PatientAppointment(
+                first_name = "Queen",
+                last_name = "Beth",
+                time = datetime.now(),
+                kind = KIND.new_patient
+                ) ,]
+        ),  
+
 ]
 
-
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
-
-@app.get("/api/v1/users")
-def fetch_users():
+@app.get("/api/v1/doctors")
+def get_all_doctors():
     return db
 
-@app.post("/api/v1/users")
-def register_user(user: User):
-    db.append(user)
-    return {"id" : user.id} 
+@app.get("/api/v1/doctors/{doctor_id}/{appointments}")
+def get_appointments_by_doctorID_and_day(doctor_id: int, appointment_time: str):
+    for doctor_row in db:
+        if doctor_row.id == doctor_id:
+            for appointments_row in doctor_row.appointments:
+                if appointments_row.time == appointment_time:
+                    return appointments_row
 
-@app.delete("/api/v1/users/{user_id}")
-def delete_user(user_id: UUID):
-    for user in db:
-        if user.id == user_id:
-            db.remove(user)
-            return
-    raise HTTPException(
-        status_code= 404,
-        detail = f"user with id:{user_id}, does not exist"
-    )
-
-@app.put("/api/v1/users/{user_id}")
-def update_user(user_update: UserUpdateRequest, user_id: UUID):
-
-    for user in db:
-        if user_update.first_nam:
-            user.first_name = user_update.first_name
-        if user_update.last_name:
-            user.last_name = user_update.last_name
-        if user_update.middle_name:
-            user.middle_name = user_update.middle_name
-        if user_update.roles:
-            user.roles = user_update.roles
-        return
-
-    raise HTTPException(
-        status_code = 404,
-        detail = f"user with id: {user_id} does not exist"
-    )
+@app.delete("/api/v1/doctors/{doctor_id}/{appointments}")
+def delete_appointments_by_doctorID_and_day(doctor_id: int, appointment_id: str):
+    for count, doctor_row in enumerate(db):
+        if doctor_row.id == doctor_id:
+            appointment_rows = doctor_row.appointments
+            for idx,appointment in enumerate(appointment_rows):
+                if appointment.id == appointment_id:
+                    db[count].remove(appointment_rows[idx])
 
 
+@app.post("/api/v1/doctors/{doctor_id}/{appointments}")
+def post_new_appointment_into_Doctor_Calendar(doctor_id:int, appointment:PatientAppointment):
+    db.append(appointment)
+
+            
+
+
+
+
+  
+
+          
