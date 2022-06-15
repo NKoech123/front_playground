@@ -1,64 +1,103 @@
-from fastapi import FastAPI
-from models import Doctor, uuid4, PatientAppointment,KIND
-from typing import Optional, List
-import json
-from datetime import datetime
+from fastapi import FastAPI, Response
+from pydantic import BaseModel, validator
+from datetime import date, datetime, time, timedelta
+from enum import Enum
+
+
+class Doctor(BaseModel):  #Product
+    lname: str
+    fname: float
+
+class KIND (str, Enum):
+    follow_up = "follow_up"
+    new_patient = "new_patient"
+
+
+class Appointment(BaseModel):  #Product
+    patientname: str
+    date: date
+    kind: KIND
+    time: time
+    #New appointments can only start at 15 minute intervals
+    @validator("time")
+    def ensure_time_is_at_15min_interval(cls, given_time):
+        #let's assume the time is regular time (NOT MILITARY TIME)
+        if ("15"  not in given_time or
+             "00" not in given_time or
+             "30" not in given_time or
+             "45" not in given_time):
+            raise ValueError("Time not in required interval")
+        return time
+
+doctors = [
+    {"id": 1, "lname": "Nelson", "fname": "Nick"},
+    {"id": 2, "lname": "Jep", "fname": "Mercy"}
+ 
+]
+
+appointments = [
+    {"id": 1, "doctor_id": 2, "patientname": "Akuku Danger", "date": "08/09/22", "time": "08:30PM"},
+ 
+]
 
 app = FastAPI()
 
-db: List[Doctor] = [
 
-    Doctor(
-        id = uuid4(),
-        first_name ="Will",
-        last_name = "Smith",
-        appointment = [ PatientAppointment(
-                first_name = "Chris",
-                last_name = "Rock",
-                time = datetime.now(),
-                kind = KIND.follow_up
-                ) ,]
-        ),   
-
-        Doctor(
-        id = uuid4(),
-        first_name ="Ben",
-        last_name = "Carson",
-        appointment = [ PatientAppointment(
-                first_name = "Queen",
-                last_name = "Beth",
-                time = datetime.now(),
-                kind = KIND.new_patient
-                ) ,]
-        ),  
-
-]
-
-@app.get("/api/v1/doctors")
+@app.get("/doctors")
 def get_all_doctors():
-    return db
+    return doctors
 
-@app.get("/api/v1/doctors/{doctor_id}/{appointments}")
-def get_appointments_by_doctorID_and_day(doctor_id: int, appointment_time: str):
-    for doctor_row in db:
-        if doctor_row.id == doctor_id:
-            for appointments_row in doctor_row.appointments:
-                if appointments_row.time == appointment_time:
-                    return appointments_row
+@app.get("/doctors/{id}/appointments/day")
+def index(id: int, day:str):
+    
+    for doctor in doctors:
+        if doctor["id"] == id:
+            doctor_id = doctor["id"]
+    if not doctor_id: 
+        return "Doctor Not Found"
+    
+    appt_lists = []
+    for appt in appointments:
+        if (appt["doctor_id"] == doctor_id 
+            and appt["date"] == day):
+            appt_lists.append(appt)
+    
+    if len(appt_lists) == 0: 
+        return "No appointments Found for this Doctor"
 
-@app.delete("/api/v1/doctors/{doctor_id}/{appointments}")
-def delete_appointments_by_doctorID_and_day(doctor_id: int, appointment_id: str):
-    for count, doctor_row in enumerate(db):
-        if doctor_row.id == doctor_id:
-            appointment_rows = doctor_row.appointments
-            for idx,appointment in enumerate(appointment_rows):
-                if appointment.id == appointment_id:
-                    db[count].remove(appointment_rows[idx])
+    return appt_lists
 
 
-@app.post("/api/v1/doctors/{doctor_id}/{appointments}")
-def post_new_appointment_into_Doctor_Calendar(doctor_id:int, appointment:PatientAppointment):
-    db.append(appointment)
+@app.delete("/doctors/{doctor_id}/appointments/{appt_id}")
+def delete_appointment(doctor_id:int, appt_id:int,  response: Response):
+    for appt in appointments:
+        if appt["doctor_id"] == doctor_id:
+            if appt["id"] == appt_id:
+                appointments.remove(appt)
+                return "Appointment Deleted"
+    
+    return "Appointment or Doctor Not Found"
+  
+
+@app.post("/doctors/{doctor_id}/appointments")
+def create_appointment(doctor_id:int, time:time,  new_appointment: Appointment, response: Response):
+
+    #A doctor can have multiple appointments with the same time, but no more than 3 
+    def check_number_of_appointments_at_particular_time(time:time, doctor_id:int):
+        count_appts = 0
+        for appt in appointments:
+            if (appt["doctor_id"] == doctor_id and
+                appt["time"] == time):
+                count_appts+=1
+        return count_appts
+
+    sametime_apptNumbers = check_number_of_appointments_at_particular_time(time, doctor_id)
+
+    if sametime_apptNumbers <= 3:
+        appointment = new_appointment.dict()
+        appointment["id"] = len(appointments)+1
+        appointments.append(appointment)
+        return appointment
 
             
 
