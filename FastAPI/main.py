@@ -27,7 +27,7 @@ class Appointment(BaseModel):  #Product
              "30" not in given_time or
              "45" not in given_time):
             raise ValueError("Time not in required interval")
-        return time
+        return given_time
 
 doctors = [
     {"id": 1, "lname": "Nelson", "fname": "Nick"},
