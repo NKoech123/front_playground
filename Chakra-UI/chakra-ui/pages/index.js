@@ -1,13 +1,18 @@
 import React from 'react'
-import { Button, Text, Heading, Box, Link } from '@chakra-ui/react'
+import { Button, Text, Heading, Box, Link, useTheme } from '@chakra-ui/react'
+import CustomLink from '../components/Link'
 
 const index = () => {
+  console.log(useTheme())
   return (
     <div>
-      <Link href='https://www.linkedin.com/in/nicholas-koech-74990010a/'>
-        This is my Linkedin Link
-      </Link>
-   
+       <CustomLink href ="/about" ChakraComponent={Button}>
+        This is a Link
+       </CustomLink>
+       
+       <Heading color = 'purple'>
+        This is a heading
+       </Heading>
     </div>
   )
 }
