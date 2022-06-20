@@ -1,20 +1,34 @@
 import React from 'react'
 import { Button, Text, Heading, Box, Link, useTheme } from '@chakra-ui/react'
 import CustomLink from '../components/Link'
+import ToggleMode from '../components/ToggleMode'
+import ToggleModeBtn from '../components/ToggleMode'
 
 const index = () => {
-  console.log(useTheme())
+ 
   return (
-    <div>
-       <CustomLink href ="/about" ChakraComponent={Button}>
-        This is a Link
-       </CustomLink>
-       
-       <Heading color = 'purple'>
-        This is a heading
-       </Heading>
-    </div>
+
+    <Box
+    sx = {{
+      background: 'red.100'
+    }}
+    
+    >
+
+        <Heading>Heading 1</Heading>
+        <Heading className='head2'>Heading 2</Heading>
+
+
+
+    </Box>
+
+
+
+
+
+
   )
-}
+
+  }
 
 export default index
