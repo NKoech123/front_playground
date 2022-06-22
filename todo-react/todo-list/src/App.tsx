@@ -44,6 +44,7 @@ function App() {
     
     <TodoListItem todo = {todos[0]} toggleTodo = {toggleTodo} />
     <TodoListItem todo = {todos[1]} toggleTodo = {toggleTodo} />
+    <TodoListItem todo = {todos[2]} toggleTodo = {toggleTodo} />
     
     </ul>
  
