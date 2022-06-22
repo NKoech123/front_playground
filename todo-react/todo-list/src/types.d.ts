@@ -1,4 +1,4 @@
-//Type declaration file
+//Type declaration File
 
 interface Todo {
     text: String;
