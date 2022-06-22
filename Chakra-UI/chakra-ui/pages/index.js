@@ -22,13 +22,7 @@ const index = () => {
 
     </Box>
 
-
-
-
-
-
   )
-
-  }
+}
 
 export default index

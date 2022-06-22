@@ -5,10 +5,7 @@ const about = () => {
   return (
     <div>
 
-        <Heading>
-        This is the about page
-   
-        </Heading>
+      <Heading> This is the about page </Heading>
   
     </div>
   )
