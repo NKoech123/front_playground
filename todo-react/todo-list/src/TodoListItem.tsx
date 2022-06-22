@@ -1,10 +1,10 @@
 import React from 'react';
 
-
 interface Props {
     todo: Todo;
 }
-//basic react component that has a placeholder content inside a list item
+
+//TodList component
 export const TodoListItem: React.FC<Props> = ({todo}) => {
     return (
     
