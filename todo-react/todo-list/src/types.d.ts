@@ -1,9 +1,11 @@
 //Type declaration File
 
 interface Todo {
-    text: String;
+    text: string;
     complete: boolean;
 }
 
 type ToggleTodo = (selectedTodo: Todo) =>void;
+
+type AddTodo = (text: string) => void;
 
