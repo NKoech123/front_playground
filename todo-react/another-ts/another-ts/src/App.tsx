@@ -4,25 +4,28 @@ import React from 'react';
 
 interface Guest{
   name: string;
-  age: number
+  age: number;
+  from: string;
+  to: string;
 }
 
-// Welcome component
-function Welcome (guest:Guest){
-  return <h1>Happy Birthday {guest.name}. You are now {guest.age} years old</h1>;
+function Travel (guest: Guest){
+  return <h1>The name of the guest is {guest.name} and traveling from {guest.from} to {guest.to}</h1>
 }
-
 function App() {
 
-  const theguest = {
-      name: "Nick",
-      age:26
-    };
+  const guest_instance = {
+    name: "Nicholas",
+    age: 26,
+    from: "Nairobi",
+    to: "NYC"
+   };
 
   return (
     <div>
       
-      <Welcome {...theguest} />
+      <h1>Hello World </h1>
+      <Travel  {...guest_instance}/> 
       
     </div>
   
