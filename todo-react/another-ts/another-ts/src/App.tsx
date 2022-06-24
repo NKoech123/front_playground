@@ -1,36 +1,57 @@
-import React from 'react';
+import React, { useState } from "react";
 
-//type declaration
 
-interface Guest{
-  name: string;
-  age: number;
-  from: string;
-  to: string;
-}
+type IProfile = {
+  username: string;
+  password: string;
+};
 
-function Travel (guest: Guest){
-  return <h1>The name of the guest is {guest.name} and traveling from {guest.from} to {guest.to}</h1>
-}
 function App() {
+  const [profile, setProfile] = useState<IProfile>({
+    username: "",
+    password: "",
+  });
 
-  const guest_instance = {
-    name: "Nicholas",
-    age: 26,
-    from: "Nairobi",
-    to: "NYC"
-   };
+  //Checking Event Type for onChange Method
+  let updateInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setProfile({
+      ...profile,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  //Checking Event Type for onSubmit Method
+  let login = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(profile);
+  };
 
   return (
-    <div>
-      
-      <h1>Hello World </h1>
-      <Travel  {...guest_instance}/> 
-      
+    <div className="App">
+      <h2>Employee Login</h2>
+      <form onSubmit={login}>
+        <div>
+          <input
+            name="username"
+            value={profile.username}
+            onChange={updateInput}
+            type="text"
+            placeholder="Username"
+          />
+        </div>
+        <div>
+          <input
+            name="password"
+            value={profile.password}
+            onChange={updateInput}
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <input type="submit" />
+      </form>
     </div>
-  
   );
 }
-
 
 export default App;
