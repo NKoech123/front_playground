@@ -1,37 +1,33 @@
 import React from 'react';
 
+//type declaration
+
+interface Guest{
+  name: string;
+  age: number
+}
+
+// Welcome component
+function Welcome (guest:Guest){
+  return <h1>Happy Birthday {guest.name}. You are now {guest.age} years old</h1>;
+}
 
 function App() {
 
-  interface Employee {
-    name: string;
-    age: number;
-    department: string;
-    salary: number;
-  }
+  const theguest = {
+      name: "Nick",
+      age:26
+    };
 
-  const peter: Employee = {
-    name: "Peter Nate",
-    age:40,
-    department: "Protocol",
-    salary: 40000000
-  };
-  
-  function employeeDetails(employee: Employee){
-    return "My name is " + employee.name + "and I am " + employee.age + " years old";
-
-  };
-
-  console.log(employeeDetails(peter))
-  
   return (
     <div>
- 
-      <h1>{employeeDetails(peter)}.</h1>
-
+      
+      <Welcome {...theguest} />
+      
     </div>
   
   );
 }
+
 
 export default App;
