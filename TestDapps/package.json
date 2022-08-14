@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "test": "env-cmd -f .env npx synpress run -cf synpress.json --config supportFile='cypress/support/index.js'"
+  },
+  
   "devDependencies": {
     "cypress": "^10.4.0"
   },
