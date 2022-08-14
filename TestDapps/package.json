@@ -1,9 +1,10 @@
 {
-  "scripts": {
-    "test": "env-cmd -f .env npx synpress run -cf synpress.json --config supportFile='cypress/support/index.js'"
-  },
   "devDependencies": {
-    "cypress": "^10.4.0"
+    "cypress": "^10.0.1",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "test": "env-cmd -f .env npx synpress run -cf synpress.json"
   },
   "dependencies": {
     "@synthetixio/synpress": "^1.2.0",

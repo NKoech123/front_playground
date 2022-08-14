@@ -2,7 +2,7 @@
     "baseUrl": "http://localhost:3000/", 
     "userAgent": "synpress",
     "retries": { "runMode": 0, "openMode": 0 },
-    "integrationFolder": "tests/e2e/specs",
+    "integrationFolder": "src/integration/",
     "screenshotsFolder": "screenshots",
     "videosFolder": "videos",
     "video": true,
@@ -19,5 +19,5 @@
     "defaultCommandTimeout": 30000,
     "pageLoadTimeout": 30000,
     "requestTimeout": 30000,
-    "supportFile": "tests/support/index.js"
+    "supportFile": "src/support/index.ts"
   }
