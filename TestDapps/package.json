@@ -1,9 +1,12 @@
 {
   "devDependencies": {
-    "cypress": "^10.4.0"
+    "cypress": "10.5.0"
   },
   "scripts": {
-    "test": "env-cmd -f .env npx synpress run -cf synpress.json"
+    "test": "env-cmd -f .env npx synpress run -cf synpress.json",
+    "cypress": "cypress open",
+    "cypress:runChromeHeadless": "cypress run --browser chrome --spec cypress/support/e2e/*.spec.js  --record --key b8e3fe43-4444-4439-a2fc-9790e29392d0"
+  
   },
   "dependencies": {
     "@synthetixio/synpress": "^1.2.0",
