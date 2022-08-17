@@ -22,18 +22,16 @@ describe('Test User Login', () => {
           .should('have.value', 'Contribution Name')
 
           
-        cy.get('input[id="react-select-11-input"]').click()
-        
-        
-        
-        cy.get('textarea[name="details"]')   //css-2613qy-menu
-          .type('I added a section to our onboarding documentation that provides an overview of our Discord channels.')       
-        //   .should('have.value','Pull Request')
-
+        cy.contains('Select an activity type or add a new one').click({ force: true })
        
-        // cy.get('input[name="proof"]') 
-        //     .type('Please add a URL to a proof of your contribution.')           
-        //     .should('have.value', 'Please add a URL to a proof of your contribution.')
+
+        cy.get('[name="details"]').click() //css-2613qy-menu
+          .type('I added a section to our onboarding documentation that provides an overview of our Discord channels.')       
+       
+       
+        cy.get('[name="proof"]') 
+            .type('https://github.com/Govrn-HQ/airtable_migration.')           
+           
 
         cy.contains('Add Contribution').click();
           
