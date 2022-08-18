@@ -1,3 +1,4 @@
+//Make sure User is active (out of the waitlist)
 describe('Create Contribution', () => {
     it('Active user logs in', () => {
         cy.visit('http://localhost:3000/')
@@ -10,9 +11,10 @@ describe('Create Contribution', () => {
       })
        
     it ('Create Contribution', () => {
-        cy.visit('http://localhost:3000/#/contributions')
+        
+        cy.contains('My Contributions').click()
+        
         cy.contains('Report a Contribution').click()
-        cy.contains('Name of Contribution').should('be.visible');
         
         cy.get('input[name="name"]')
           .type('Govrn Protocol Pull Request')
