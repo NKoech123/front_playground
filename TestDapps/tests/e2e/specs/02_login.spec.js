@@ -1,16 +1,29 @@
 //Make sure User is active (out of the waitlist)
+const login = () => {
+  cy.visit('http://localhost:3000/')
+  cy.contains('Connect Wallet').click();
+  cy.contains('MetaMask').click(); 
+  cy.switchToMetamaskWindow();
+  cy.acceptMetamaskAccess().should("be.true");
+  cy.confirmMetamaskSignatureRequest();
+  cy.switchToCypressWindow();
+
+}
 describe('Create Contribution', () => {
-    it('Active user logs in', () => {
-        cy.visit('http://localhost:3000/')
-        cy.contains('Connect Wallet').click();
-        cy.contains('MetaMask').click(); 
-        cy.switchToMetamaskWindow();
-        cy.acceptMetamaskAccess().should("be.true");
-        cy.confirmMetamaskSignatureRequest();
-        cy.switchToCypressWindow();
-      })
+    // it('Active user logs in', () => {
+    //     cy.visit('http://localhost:3000/')
+    //     cy.contains('Connect Wallet').click();
+    //     cy.contains('MetaMask').click(); 
+    //     cy.switchToMetamaskWindow();
+    //     cy.acceptMetamaskAccess().should("be.true");
+    //     cy.confirmMetamaskSignatureRequest();
+    //     cy.switchToCypressWindow();
+    //   })
+    before(()=>{
+      login()
+    });
        
-    it ('Create Contribution', () => {
+    it ('Report your first Contribution', () => {
         
         cy.contains('My Contributions').click()
         
@@ -37,7 +50,8 @@ describe('Create Contribution', () => {
         cy.contains('Select a DAO to associate this Contribution with')  //All DAOs
            
 
-        cy.contains('Add Contribution').click({ force: true }).click({ force: true })     
+        cy.contains('Add Contribution').click({ force: true }).click({ force: true })  
+        cy.visit('http://localhost:3000/#/contributions')   
 
      })
  
