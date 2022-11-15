@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+
+}
+
+
+.CardBox{
+  width: 40%;
+  height: 25%;
+  padding-top: 300px;
+  background-color: brown;
+  border-radius: 30px;
+  text-align: center;
+};
+
