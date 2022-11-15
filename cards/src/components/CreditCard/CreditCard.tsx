@@ -6,6 +6,8 @@ import { CreditCardProps } from './types';
 
 export const CreditCard: FunctionComponent<CreditCardProps> = (props) => {
   return (
-    <div>{props.name}</div>
+    <div className='CreditCard'>
+        {props.name}
+    </div>
   );
 };

@@ -7,9 +7,7 @@ function App() {
   const obj = {name: "Nicholas Koech"}
   return (
     <div className="App">
-      <div className='CardBox'>
-        <CreditCard {...obj}/>
-      </div>      
+      <CreditCard {...obj}/>  
     </div>
   );
 }
