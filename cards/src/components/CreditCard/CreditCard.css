@@ -9,7 +9,7 @@
     background: linear-gradient(
         106.37deg,
         blue 29.63%,
-        --orange 51.55%,
+        brown 51.55%,
         #f3c6f1 90.85%
       );
 }
@@ -19,6 +19,7 @@ img{
  height: 26px;
  color: white;
  background-color: white;
+ border-radius: 5px;
 }
 
 
@@ -41,11 +42,12 @@ img{
 .HeaderInfo{
     display: flex;
     flex-direction: row;
+    margin-top: 16px;
 }
 
 .HeaderInfo>p{
-    margin-right: 50px;
-    font-size: 10px;
+    margin-right: 60px;
+    font-size: 8px;
     color: white;
 }
 
@@ -57,6 +59,10 @@ img{
 .Info>p{
     color: white;
     font-weight: bold;
+    font-size: 12px;
     margin-right: 40px;
+}
 
+.Info>p:nth-child(2){
+    margin-right: 75px;
 }
