@@ -1,7 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import { CreditCard } from './components/CreditCard/CreditCard';
-import CreditCardBehind from './components/CreditCard/CreditCardBehind';
 
 import visa from './assets/visa.png';
 import contactlesspayment from './assets/contactless-icon.png';
@@ -39,16 +37,13 @@ function App() {
   return (
     <div className="App">
       {
-     
       cardData.map((cardInfo, index)=> {
         return (
           <div key={index}>
              <CardState {...cardInfo}/> 
           </div>
         );
-         
-        }
-      )}
+      })}
        
     </div>
   );

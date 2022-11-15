@@ -20,7 +20,6 @@ const CardState: FunctionComponent<CreditCardProps> = (props) => {
       }else{
         setFlip(false)
       }
-      
       console.log("Clicked")
     }
   return (
