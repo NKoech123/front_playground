@@ -8,5 +8,4 @@ const CreditCardBehind = () => {
 );
 };
 
-
 export default CreditCardBehind;

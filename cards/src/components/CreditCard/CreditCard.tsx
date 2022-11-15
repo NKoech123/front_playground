@@ -8,7 +8,7 @@ import { CreditCardProps } from './types';
 export const CreditCard: FunctionComponent<CreditCardProps> = (props) => {
 
   return (
-  
+    
     <div className='CreditCard'>
       <div className='TopCard'>
         <img src={props.contactlessPaymentIcon} alt='contactless-payment'/>

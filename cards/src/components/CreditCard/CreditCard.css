@@ -14,6 +14,30 @@
       );
 }
 
+.CreditCardBehind{
+    display: flex;
+    width: 328px;
+    height: 208px;
+    background-color: blue;
+    border-radius: 30px;
+    padding: 20px;
+    flex-direction: column;
+    background: linear-gradient(
+        106.37deg,
+        blue 29.63%,
+        brown 51.55%,
+        #f3c6f1 90.85%
+      );
+    justify-content: center;
+    align-items: center;
+}
+
+.CreditCardBehind>p{
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
 img{
  width: 46px;
  height: 26px;

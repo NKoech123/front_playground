@@ -5,7 +5,7 @@ import CreditCardBehind from './components/CreditCard/CreditCardBehind';
 
 import visa from './assets/visa.png';
 import contactlesspayment from './assets/contactless-icon.png';
-
+import CardState from './components/CreditCard/CardState';
 const cardData = [
   {
   name: "Nicholas Koech",
@@ -35,30 +35,15 @@ const cardData = [
 ];
 
 function App() {
-  const [flip, setFlip] = useState<Boolean>(false);
-  
-  // useEffect(() => {
-  //   handleClick();
-  
-  //   return () => {
-  //     handleClick()
-  //   }
-  //   }, [flip])
-  
-  const handleClick = () =>{
-    setFlip(true)
-    console.log("Clicked")
-  }
-
 
   return (
-    <div className="App"  onClick={()=>{handleClick()}}>
-      {flip?
-      <CreditCardBehind/>:
+    <div className="App">
+      {
+     
       cardData.map((cardInfo, index)=> {
         return (
           <div key={index}>
-             <CreditCard {...cardInfo}/> 
+             <CardState {...cardInfo}/> 
           </div>
         );
          
