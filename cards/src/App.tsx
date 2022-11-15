@@ -1,10 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { CreditCard } from './components/CreditCard/CreditCard';
 
 function App() {
-  const obj = {name: "Nicholas Koech"}
+  const obj = {accountNo: "5655 3423 34234"}
   return (
     <div className="App">
       <CreditCard {...obj}/>  

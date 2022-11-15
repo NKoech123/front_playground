@@ -1,3 +1,4 @@
 export interface CreditCardProps {
-    name: string;
+    accountNo: string
+
 };
