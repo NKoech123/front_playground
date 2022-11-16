@@ -12,6 +12,8 @@
         brown 51.55%,
         #f3c6f1 90.85%
       );
+      margin-right: 20px;
+   
 }
 
 .CreditCardBehind{
@@ -30,7 +32,9 @@
       );
     justify-content: center;
     align-items: center;
+    margin-right: 20px;
 }
+
 
 .CreditCardBehind>p{
     color: white;
@@ -90,3 +94,26 @@ img{
 .Info>p:nth-child(2){
     margin-right: 75px;
 }
+
+
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: wheat;
+    }
+    .CreditCard{
+        display: flex;
+        margin: 20px;
+    }
+
+    .CreditCardBehind{
+        display: flex;
+        margin: 20px;
+    }
+
+    .App{
+        display: flex;
+        flex-direction: column;
+    }
+
+  }
