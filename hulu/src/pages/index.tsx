@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-
+import Header from 'components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,8 +12,9 @@ export default function Home() {
         <title>Hulu</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1> Let's build Hulu 2.0</h1>
+
       {/* Header */}
+      <Header/>
       {/*Navbar */}
       {/* Results */}
       
