@@ -1,7 +1,13 @@
 
-const Results = () => {
+import Thumbnail from "./Thumbnail";
+
+const Results = ({results}: any) => {
   return (
-    <div>Results</div>
+    <div>
+     {results.map((result: any)=>(
+        <Thumbnail key={result.id} result={result}/>
+     ))}
+    </div>
   )
 }
 

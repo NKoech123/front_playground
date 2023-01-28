@@ -13,6 +13,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: '**.themoviedb.org',
+      },
+      {
+        protocol: 'https',
         hostname: '**.upload.wikimedia.org/*',
       },
     ],
