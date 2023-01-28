@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { HandThumbUpIcon } from "@heroicons/react/24/outline";
+import { forwardRef } from "react";
 
-const Thumbnail = ({ result }: any) => {
+const Thumbnail = forwardRef(({ result }: any, ref: any) => {
  
     const BASE_URL = "https://www.themoviedb.org/t/p/original/"
   
   return (
-    <div className="group cursor-pointer transition duration-200 
+    <div 
+    ref={ref}
+    className="group cursor-pointer transition duration-200 
          ease-in transform sm:hover:scale-105 hover:z-50"
         >
         <Image 
@@ -29,6 +32,6 @@ const Thumbnail = ({ result }: any) => {
         </div>
     </div>
   )
-}
+})
 
 export default Thumbnail
