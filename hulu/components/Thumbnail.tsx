@@ -6,7 +6,9 @@ const Thumbnail = ({ result }: any) => {
     const BASE_URL = "https://www.themoviedb.org/t/p/original/"
   
   return (
-    <div className="group cursor-pointer">
+    <div className="group cursor-pointer transition duration-200 
+         ease-in transform sm:hover:scale-105 hover:z-50"
+        >
         <Image 
           src={
             `${BASE_URL}${result.backdrop_path || result.poster_path}` ||

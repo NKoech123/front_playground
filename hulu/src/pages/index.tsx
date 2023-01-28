@@ -28,8 +28,9 @@ export default function Home({results} : any) {
 export async function  getServerSideProps(context: any) {
   const genre = context.query.genre;
 
-  const request = await fetch(`https://api.themoviedb.org/3/${HuluMovies[genre]?.url 
-      || HuluMovies.fetchTrending.url
+  const request = await fetch(
+    `https://api.themoviedb.org/3/${
+      HuluMovies[genre]?.url || HuluMovies.fetchTrending.url
     }`
   ).then((res)=>res.json());
 
