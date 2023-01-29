@@ -5,7 +5,7 @@ import tw from 'tailwind-react-native-classnames';
 const HomeScreen = () => {
   return (
     <SafeAreaView>
-         <Text>HomeScreen</Text>
+         <Text style={tw`text-red-500`}>HomeScreen</Text>
     </SafeAreaView>
    
 
